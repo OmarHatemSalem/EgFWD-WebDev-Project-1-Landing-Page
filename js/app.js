@@ -38,39 +38,55 @@
  * 
 */
 
-// build the nav
-const navBar = document.getElementById("navbar__list");
-const sectionNames = document.querySelectorAll(".sectionsList");
 
-for (let i=0; i<sectionNames.length; i++) {
-    const listItem = document.createElement('li');
-    const listAnchor = document.createElement('a');
-    const listContent = document.createTextNode(sectionNames[i].getAttribute('data-nav'));
+function beginJS() {
+    // build the nav
+    const navBar = document.getElementById("navbar__list");
+    const sectionNames = document.querySelectorAll("section");
     
-    listAnchor.appendChild(listContent);
-    listAnchor.classList.add("menu__link");
-    listAnchor.setAttribute("href", "#"+sectionNames[i].id);
-    listItem.appendChild(listAnchor);
+    for (let i=0; i<sectionNames.length; i++) {
+        const listItem = document.createElement('li');
+        const listAnchor = document.createElement('a');
+        const listContent = document.createTextNode(sectionNames[i].childNodes[1].childNodes[1].textContent);
+        
+        listAnchor.appendChild(listContent);
+        listAnchor.classList.add("menu__link");
+        listAnchor.setAttribute("href", "#"+sectionNames[i].id);
+        listItem.appendChild(listAnchor);
+        
+        navBar.appendChild(listItem);
+    }
 
-    navBar.appendChild(listItem);
+    
+    const links = document.querySelectorAll(".navbar__menu .menu__link");
+    
+    let previous = 0;
+
+    for (let i=0; i<links.length; i++) {
+        links[i].addEventListener("click", function (event) {
+            event.preventDefault();
+            //console.log("event cleard");
+            
+            sectionNames[previous].classList.remove("your-active-class");
+            sectionNames[i].classList.add("your-active-class");
+            previous  = i;
+
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+                behavior : "smooth"
+            })
+            //console.log("scrolled");
+        });
+    }
+    
+    
 }
 
+const startingTime = performance.now();
 
-const links = document.querySelectorAll(".navbar__menu .menu__link");
+document.addEventListener('DOMContentLoaded', beginJS);
 
-for (let i=0; i<links.length; i++) {
-    links[i].addEventListener("click", function (event) {
-        event.preventDefault();
-        //console.log("event cleard");
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior : "smooth"
-        })
-        //console.log("scrolled");
-    });
-}
-
-
-
+const endingTime = performance.now();
+console.log('This code took ' + (endingTime - startingTime) + ' milliseconds.');
 // Add class 'active' to section when near top of viewport
 
 
@@ -81,7 +97,7 @@ for (let i=0; i<links.length; i++) {
  * End Main Functions
  * Begin Events
  * 
-*/
+ */
 
 // Build menu 
 
