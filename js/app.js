@@ -67,16 +67,47 @@ function beginJS() {
             event.preventDefault();
             //console.log("event cleard");
             
-            sectionNames[previous].classList.remove("your-active-class");
+            /*sectionNames[previous].classList.remove("your-active-class");
             sectionNames[i].classList.add("your-active-class");
-            previous  = i;
+            previous  = i;*/
 
             document.querySelector(this.getAttribute("href")).scrollIntoView({
                 behavior : "smooth"
             })
             //console.log("scrolled");
         });
+
+        
+
+        document.addEventListener('scroll', function (event) {
+            event.preventDefault();
+            const rect = sectionNames[i].getBoundingClientRect();
+            if (rect['bottom'] >= -50 && rect['top'] <= 50) {
+                sectionNames[previous].classList.remove("your-active-class");
+                sectionNames[i].classList.add("your-active-class");
+                previous  = i;
+            }
+
+            /*navBar.style.display = "none";
+            setTimeout(() => {navBar.style.display = "block";}, 1500);*/
+        });
     }
+
+    /*function update() {
+      const rect = sectionNames[previous].getBoundingClientRect();
+    
+      //container.innerHTML = '';
+      for (let key in rect) {
+        if(typeof rect[key] !== 'function') {
+          let para = document.createElement('p');
+          para.textContent  = `${ key } : ${ rect[key] }`;
+          container.appendChild(para);
+        }
+      }
+    }
+    
+    document.addEventListener('scroll', update);
+    update();*/
     
     
 }
