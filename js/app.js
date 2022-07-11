@@ -93,23 +93,33 @@ function beginJS() {
         });
     }
 
-    /*function update() {
-      const rect = sectionNames[previous].getBoundingClientRect();
-    
-      //container.innerHTML = '';
-      for (let key in rect) {
-        if(typeof rect[key] !== 'function') {
-          let para = document.createElement('p');
-          para.textContent  = `${ key } : ${ rect[key] }`;
-          container.appendChild(para);
+    const header = document.querySelector('h1');
+    const button = document.getElementById('myBtn');
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        document.querySelector(this.childNodes[0].getAttribute("href")).scrollIntoView({
+            behavior : "smooth"
+        })
+    });
+
+    document.addEventListener('scroll', function (event) {
+        const headRect = header.getBoundingClientRect();
+        event.preventDefault();
+        if (headRect['bottom'] < -50) {
+            button.style.display = "block";
+            navBar.style.display = "block";
+            setTimeout(() => {navBar.style.display = "none";}, 0);
+        } else {
+            button.style.display = "block";           
         }
-      }
-    }
-    
-    document.addEventListener('scroll', update);
-    update();*/
-    
-    
+
+ 
+        
+
+
+    });
+
 }
 
 const startingTime = performance.now();
