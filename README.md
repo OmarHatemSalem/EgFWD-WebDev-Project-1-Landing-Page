@@ -2,12 +2,18 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [Description](#description)
+* [Usage](#usage)
+* [Dependencies](#dependencies)
 
-## Instructions
+## Description
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This project is the first project in the EgFWD Professional Frontend Web Development. The project is a landing page that dynamically updates its content through JS. It also has extra feautres as collapisble sections, "back to top" button, and a disappearing navigation menu.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Usage
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+Simply open up the "index.html" file and all the other files will load automatically. The website will open immediately.
+
+## Dependencies
+
+The project uses Vanilla Javascript only with no extra dependencies loaded.
